@@ -4,7 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 /* Layout */
-import Layout from '@/layout'
+import Layout from '../layout'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -51,7 +51,8 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: 'Dashboard',
+       icon: 'dashboard' }
     }]
   },
 
@@ -66,13 +67,13 @@ export const constantRoutes = [
         path: 'table',
         name: 'Table',
         component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        meta: { title: 'Table', icon: 'table',roles: ['editor'] }
       },
       {
         path: 'tree',
         name: 'Tree',
         component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        meta: { title: 'Tree', icon: 'tree',roles: ['admin'] }
       }
     ]
   },
@@ -86,6 +87,39 @@ export const constantRoutes = [
         name: 'Form',
         component: () => import('@/views/form/index'),
         meta: { title: 'Form', icon: 'form' }
+      }
+    ]
+  },
+
+  {
+    path: '/test',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'test',
+        component: () => import('@/views/test/index.vue'),
+        meta: { title: 'table表单', 
+                icon: 'form',
+                roles: ['admin']
+       }
+      }
+    ]
+  },
+
+  {
+    path: '/hoc',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'hoc',
+        component: () => import('@/views/hoc/index.vue'),
+        meta: { title: 'hoc', 
+                icon: 'form',
+                noCache: true,
+                roles: ['admin']
+       }
       }
     ]
   },
